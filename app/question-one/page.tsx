@@ -7,7 +7,7 @@ import { useQuestionStore } from '@/store/questiondata';
 export default function QuestionOne() {
 
     const router = useRouter();
-    const setAnswer = useQuestionStore((state) => state.setHobbies);
+    const { setHobbies } = useQuestionStore();
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -16,7 +16,7 @@ export default function QuestionOne() {
         const input = formData.get('hobbies') as string;
 
         const hobbies = input
-            .split(',')
+            .split(/,|\s+and\s+/i)
             .map((h) => h.trim())
             .filter(Boolean);
 
@@ -25,8 +25,7 @@ export default function QuestionOne() {
             return;
         }
 
-        setAnswer(hobbies);
-        console.log(hobbies);
+        setHobbies(hobbies);
         router.push('/question-two');
     }
 

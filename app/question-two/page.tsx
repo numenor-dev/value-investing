@@ -1,68 +1,93 @@
 'use client';
 
+import { refineHobbies } from '../api/claude';
 import { useRouter } from 'next/navigation';
 import { useQuestionStore } from '@/store/questiondata';
+import { useEffect, useState } from 'react';
+import { motion, Variants } from 'motion/react';
 
 export default function QuestionTwo() {
+    const dotVariants: Variants = {
+        pulse: {
+            scale: [1, 1.5, 1],
+            transition: {
+                duration: 1.3,
+                repeat: Infinity,
+                ease: "easeInOut",
+            },
+        }
+    };
 
+    const {
+        hobbies,
+        refinedHobbies,
+        setRefinedHobbies,
+        setSelectedRefinedHobbies
+    } = useQuestionStore();
+
+    const [loading, setLoading] = useState(false);
+    const [selected, setSelected] = useState<string[]>([]);
     const router = useRouter();
 
-    const setAnswer = useQuestionStore((state) => state.setAnswer);
+    useEffect(() => {
+        const fetchRefinedHobbies = async () => {
+            setLoading(true);
+            try {
+                const getRefined = await refineHobbies(hobbies);
+                setRefinedHobbies(getRefined);
+            } catch (error) {
+                console.error('Failed to refine hobbies:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
+        fetchRefinedHobbies();
+    }, [hobbies, setRefinedHobbies]);
 
-        const formData = new FormData(event.currentTarget);
-        const input = formData.get('interests') as string;
+    const handleSubmit = () => {
+        setSelectedRefinedHobbies(selected);
+        router.push('/question-three');
+    };
 
-
-        const interests = input
-            .split(',')
-            .map((i) => i.trim())
-            .filter(Boolean);
-
-        if (interests.length === 0) {
-            alert('Please add at least one hobby!');
-            return;
-        }
-
-        setAnswer('interests', interests);
-        console.log(interests);
-        router.push('/question-two');
-
+    if (loading) {
+        return (
+            <motion.div
+                className="min-h-screen flex items-center justify-center gap-x-4"
+                animate="pulse"
+                transition={{ staggerChildren: -0.2, staggerDirection: -1 }}
+            >
+                <motion.div className="w-4 h-4 rounded-3xl bg-blue-700 will-change-transform" variants={dotVariants} />
+                <motion.div className="w-4 h-4 rounded-3xl bg-blue-700 will-change-transform" variants={dotVariants} />
+                <motion.div className="w-4 h-4 rounded-3xl bg-blue-700 will-change-transform" variants={dotVariants} />
+            </motion.div>
+        );
     }
 
     return (
-        <form
-            className="
-            flex min-h-screen flex-col items-center 
-            justify-center bg-zinc-100 font-sans space-y-6 p-4
-            "
-            onSubmit={handleSubmit}
-        >
-            <h2 className="text-2xl font-bold text-zinc-800">From the hobby or hobbies you mentioned,
-                which of these areas interest you?
-            </h2>
-            <label className="flex flex-col items-start space-y-2">
-                <input
-                    name="hobbies"
-                    type="text"
-                    className="
-                    rounded-md border border-zinc-300 w-[50em] 
-                    h-20 text-center text-md font-sans focus:border-blue-500 
-                    focus:outline-none
-                    "
-                    id="hobbies"
-                    required={true}
-                    placeholder="Add hobbies here!"
-                />
-            </label>
-            <button
-                type="submit"
-                className="rounded-xl bg-blue-600 px-6 py-3 font-mono text-xl text-white hover:bg-blue-700"
-            >
-                Submit
-            </button>
-        </form>
+        <div>
+            {Object.entries(refinedHobbies).map(([hobby, options]) => (
+                <div key={hobby}>
+                    <h3>{hobby}</h3>
+                    {options.map(option => (
+                        <label key={option}>
+                            <input
+                                type="checkbox"
+                                checked={selected.includes(option)}
+                                onChange={(e) => {
+                                    if (e.target.checked) {
+                                        setSelected([...selected, option]);
+                                    } else {
+                                        setSelected(selected.filter(s => s !== option));
+                                    }
+                                }}
+                            />
+                            {option}
+                        </label>
+                    ))}
+                </div>
+            ))}
+            <button onClick={handleSubmit}>Find Companies</button>
+        </div>
     );
 }

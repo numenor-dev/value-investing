@@ -6,6 +6,18 @@ const client = new Anthropic({
     apiKey: process.env.ANTHROPIC_API_KEY
 });
 
+function extractJSON(text: string) {
+    try {
+        const cleaned = text
+            .replace(/```json\n?/g, '')
+            .replace(/```\n?/g, '')
+            .trim();
+        return JSON.parse(cleaned);
+    } catch {
+        throw new Error('Failed to parse Claude response as JSON');
+    }
+}
+
 export async function refineHobbies(hobbies: string[]) {
     const message = await client.messages.create({
         model: 'claude-sonnet-4-5-20250929',
@@ -14,24 +26,24 @@ export async function refineHobbies(hobbies: string[]) {
             role: 'user',
             content: `Given these hobbies: ${hobbies.join(', ')}
       
-        For each hobby, provide exactly 5 refined subcategories or specializations for each one.
+        For each hobby, provide exactly 5 refined subcategories or specializations.
 
-        Return ONLY a JSON object with this structure:
+        Return ONLY valid JSON with this exact structure (no markdown, no extra text):
         {
-            "[actual_hobby_name]": ["subcategory1", "subcategory2", "subcategory3", "subcategory4", "subcategory5"]
+            "hobby_name": ["subcategory1", "subcategory2", "subcategory3", "subcategory4", "subcategory5"]
         }
 
-        Do not include any other text, only the JSON.`
+        Respond with ONLY the JSON object.`
         }]
     });
 
     const textBlock = message.content.find(block => block.type === 'text');
 
-    if (textBlock && textBlock.type === 'text') {
-        return Response.json(JSON.parse(textBlock.text));
+    if (!textBlock || textBlock.type !== 'text') {
+        throw new Error('No text response from Claude');
     }
 
-    throw new Error('No refined hobbies text response from Claude!');
+    return extractJSON(textBlock.text);
 }
 
 export async function findCompanies(refinedHobbies: string[]) {
@@ -42,20 +54,26 @@ export async function findCompanies(refinedHobbies: string[]) {
             role: 'user',
             content: `Given these specific interests: ${refinedHobbies.join(', ')}
             
-            Identify 3 publicly traded companies that align with these interests. For each company, provide:
-            -Company name
-            -Stock ticker symbol
-            -Brief description of relevance
+            Identify 3 publicly traded companies that align with these interests.
 
-            Format as JSON array.`
+            Return ONLY valid JSON (no markdown, no extra text) in this exact format:
+            [
+                {
+                    "name": "Company Name",
+                    "ticker": "SYMBOL",
+                    "description": "Brief relevance description"
+                }
+            ]
+
+            Respond with ONLY the JSON array.`
         }]
     });
 
     const textBlock = message.content.find(block => block.type === 'text');
 
-    if (textBlock && textBlock.type === 'text') {
-        return Response.json(JSON.parse(textBlock.text));
+    if (!textBlock || textBlock.type !== 'text') {
+        throw new Error('No text response from Claude');
     }
 
-    throw new Error('No companies text response from Claude!');
+    return extractJSON(textBlock.text);
 }
