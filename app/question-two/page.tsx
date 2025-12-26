@@ -1,12 +1,14 @@
 'use client';
 
 import { refineHobbies } from '../api/claude';
-import { useRouter } from 'next/navigation';
 import { useQuestionStore } from '@/store/questiondata';
+import SubCards from '../components/subcards';
 import { useEffect, useState } from 'react';
 import { motion, Variants } from 'motion/react';
 
 export default function QuestionTwo() {
+
+
     const dotVariants: Variants = {
         pulse: {
             scale: [1, 1.5, 1],
@@ -22,12 +24,9 @@ export default function QuestionTwo() {
         hobbies,
         refinedHobbies,
         setRefinedHobbies,
-        setSelectedRefinedHobbies
     } = useQuestionStore();
 
     const [loading, setLoading] = useState(false);
-    const [selected, setSelected] = useState<string[]>([]);
-    const router = useRouter();
 
     useEffect(() => {
         const fetchRefinedHobbies = async () => {
@@ -45,11 +44,6 @@ export default function QuestionTwo() {
         fetchRefinedHobbies();
     }, [hobbies, setRefinedHobbies]);
 
-    const handleSubmit = () => {
-        setSelectedRefinedHobbies(selected);
-        router.push('/question-three');
-    };
-
     if (loading) {
         return (
             <motion.div
@@ -65,29 +59,6 @@ export default function QuestionTwo() {
     }
 
     return (
-        <div>
-            {Object.entries(refinedHobbies).map(([hobby, options]) => (
-                <div key={hobby}>
-                    <h3>{hobby}</h3>
-                    {options.map(option => (
-                        <label key={option}>
-                            <input
-                                type="checkbox"
-                                checked={selected.includes(option)}
-                                onChange={(e) => {
-                                    if (e.target.checked) {
-                                        setSelected([...selected, option]);
-                                    } else {
-                                        setSelected(selected.filter(s => s !== option));
-                                    }
-                                }}
-                            />
-                            {option}
-                        </label>
-                    ))}
-                </div>
-            ))}
-            <button onClick={handleSubmit}>Find Companies</button>
-        </div>
+        <SubCards refHobbies={refinedHobbies} />
     );
 }

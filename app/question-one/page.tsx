@@ -56,7 +56,7 @@ export default function QuestionOne() {
             </label>
             <button
                 type="submit"
-                className="rounded-xl bg-blue-600 px-6 py-3 font-mono text-xl text-white hover:bg-blue-700"
+                className="rounded-xl bg-blue-600 px-6 py-3 font-mono text-xl text-white hover:bg-blue-700 cursor-pointer"
             >
                 Submit
             </button>
