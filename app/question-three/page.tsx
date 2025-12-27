@@ -1,12 +1,12 @@
 'use client';
 
-import { refineHobbies } from '../api/claude';
-import { useQuestionStore } from '@/store/questiondata';
-import SubCards from '../components/subcards';
+import { useQuestionStore } from "@/store/questiondata";
+import { findCompanies } from "../api/claude";
 import { useEffect, useState, useRef } from 'react';
 import { motion, Variants } from 'motion/react';
+import CompanyInfo from "../components/companyinfo";
 
-export default function QuestionTwo() {
+export default function QuestionThree() {
 
     const dotVariants: Variants = {
         pulse: {
@@ -20,33 +20,33 @@ export default function QuestionTwo() {
     };
 
     const {
-        hobbies,
-        refinedHobbies,
-        setRefinedHobbies,
+        selectedRefinedHobbies,
+        setCompanies,
+        companies
     } = useQuestionStore();
 
     const [loading, setLoading] = useState(false);
     const hasRunRef = useRef(false);
 
     useEffect(() => {
-        if (hasRunRef.current) return;
+        if(hasRunRef.current) return;
         hasRunRef.current = true;
 
-        const fetchRefinedHobbies = async () => {
+        const fetchCompanies = async () => {
             setLoading(true);
             try {
-                const getRefined = await refineHobbies(hobbies);
-                setRefinedHobbies(getRefined);
+                const relatedCompanies = await findCompanies(selectedRefinedHobbies);
+                setCompanies(relatedCompanies)
             } catch (error) {
-                console.error('Failed to refine hobbies:', error);
+                console.error('Failed to get companies', error)
             } finally {
                 setLoading(false);
             }
-        };
+        }
 
-        fetchRefinedHobbies();
+        fetchCompanies();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [hobbies]);
+    }, [selectedRefinedHobbies])
 
     if (loading) {
         return (
@@ -63,6 +63,8 @@ export default function QuestionTwo() {
     }
 
     return (
-        <SubCards refHobbies={refinedHobbies} />
-    );
+        <div>
+            <CompanyInfo relatedCompanies={companies} />
+        </div>
+    )
 }

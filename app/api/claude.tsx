@@ -20,7 +20,7 @@ function extractJSON(text: string) {
 
 export async function refineHobbies(hobbies: string[]) {
     const message = await client.messages.create({
-        model: 'claude-sonnet-4-5-20250929',
+        model: 'claude-haiku-4-5-20251001',
         max_tokens: 1024,
         messages: [{
             role: 'user',
@@ -48,7 +48,7 @@ export async function refineHobbies(hobbies: string[]) {
 
 export async function findCompanies(refinedHobbies: string[]) {
     const message = await client.messages.create({
-        model: 'claude-haiku-4-5-20251001',
+        model: 'claude-haiku-4-5',
         max_tokens: 2048,
         messages: [{
             role: 'user',

@@ -1,13 +1,13 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-type Company = {
+export type Company = {
     name: string;
     ticker: string;
     description: string;
 };
 
-type RefinedHobbies = Record<string, string[]>;
+export type RefinedHobbies = Record<string, string[]>;
 
 type QuestionnaireStore = {
     hobbies: string[];
