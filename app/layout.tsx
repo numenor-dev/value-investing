@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AVI - Analytical Value Investing",
-  description: "Personality based value investesting.",
+  title: "PIE - Personalized Investment Engine",
+  description: "A tool to learn about passion and value investing."
 };
 
 export default function RootLayout({
@@ -27,7 +27,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <div className="min-h-screen bg-emerald-900 text-slate-300">
+          {children}
+        </div>
       </body>
     </html>
   );

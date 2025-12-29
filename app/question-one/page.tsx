@@ -33,7 +33,7 @@ export default function QuestionOne() {
         <form
             className="
             flex min-h-screen flex-col items-center 
-            justify-center bg-zinc-100 font-sans space-y-6 p-4
+            justify-center bg-zinc-200 font-sans space-y-6 p-4
             "
             onSubmit={handleSubmit}
         >
