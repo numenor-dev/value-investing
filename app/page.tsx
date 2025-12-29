@@ -24,13 +24,15 @@ export default function Begin() {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.3,
-        delay: 0.6
+        duration: 1.5,
       }
     },
     hover: {
       scale: 1.05,
-      transition: { duration: 0.2 }
+      transition: {
+        duration: 0.2,
+        easing: 'easeIn'
+      }
     }
   };
 
@@ -69,9 +71,9 @@ export default function Begin() {
       </motion.span>
 
       <motion.button
-        className="rounded-xl mx-auto bg-slate-900 px-6 py-3 font-mono text-xl text-white hover:bg-teal-950 cursor-pointer mt-24 transition duration-300 ease-in-out shadow-xl"
+        className="rounded-xl mx-auto bg-slate-950 px-6 py-3 font-mono text-2xl text-white cursor-pointer mt-24 ease-in-out shadow-xl"
         type="button"
-        onClick={() => router.push("/question-one")}
+        onClick={() => router.push("/passion-inv")}
         variants={buttonVariants}
         initial="hidden"
         animate="visible"
