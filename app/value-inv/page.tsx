@@ -1,10 +1,9 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { motion } from 'motion/react';
+import ButtonArrow from '../components/buttonarrow';
 
 export default function ValueInvesting() {
-    const router = useRouter();
 
     const textVariants = {
         hidden: { opacity: 0, y: 40 },
@@ -18,25 +17,6 @@ export default function ValueInvesting() {
         })
     };
 
-    const buttonVariants = {
-        hidden: { opacity: 0, y: 40 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                duration: 1.5,
-            }
-        },
-        hover: {
-            scale: 1.05,
-            transition: {
-                duration: 0.2,
-                easing: 'easeIn'
-            }
-        }
-    };
-
-
     return (
         <div className="lg:max-w-7xl max-w-xl flex flex-col mx-auto pt-28 font-sans">
             <motion.h1
@@ -49,7 +29,7 @@ export default function ValueInvesting() {
                 What is Value Investing?
             </motion.h1>
             <motion.span
-                className="font-sans text-3xl mt-10 xl:max-w-7xl lg:max-w-5xl mx-auto"
+               className=" xl:max-w-7xl lg:max-w-5xl mx-auto text-justify font-sans text-3xl mt-10"
                 variants={textVariants}
                 initial="hidden"
                 animate="visible"
@@ -67,17 +47,19 @@ export default function ValueInvesting() {
                 by purchasing undervalued stocks and holding them
                 until their true value is recognized by the market.
             </motion.span>
-            <motion.button
-                className="rounded-xl mx-auto bg-slate-950 px-6 py-3 font-mono text-2xl text-white cursor-pointer mt-24 ease-in-out shadow-xl"
-                type="button"
-                onClick={() => router.push("/question-one")}
-                variants={buttonVariants}
-                initial="hidden"
-                animate="visible"
-                whileHover="hover"
-            >
-                Continue
-            </motion.button>
+            <div className="flex flex-row-reverse mx-auto gap-x-96">
+                <ButtonArrow
+                    direction="next"
+                    href="/question-one"
+                    className="mt-20 w-20"
+                />
+
+                <ButtonArrow
+                    direction="back"
+                    href="/"
+                    className="mt-20 w-20"
+                />
+            </div>
         </div>
     )
 }

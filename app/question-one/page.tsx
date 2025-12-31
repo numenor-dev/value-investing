@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useQuestionStore } from '@/store/questiondata';
+import ButtonArrow from '../components/buttonarrow';
 
 
 export default function QuestionOne() {
@@ -33,11 +34,11 @@ export default function QuestionOne() {
         <form
             className="
             flex min-h-screen flex-col items-center 
-            justify-center bg-zinc-200 font-sans space-y-6 p-4
+            justify-center font-sans space-y-6 p-4
             "
             onSubmit={handleSubmit}
         >
-            <h2 className="text-2xl font-bold text-zinc-800">
+            <h2 className="text-5xl font-bold">
                 What hobbies are you passionate about?
             </h2>
             <label className="flex flex-col items-start space-y-2">
@@ -45,21 +46,28 @@ export default function QuestionOne() {
                     name="hobbies"
                     type="text"
                     className="
-                    rounded-md border border-zinc-300 w-[50em] 
-                    h-20 text-center text-md font-sans focus:border-blue-500 
+                    rounded-md bg-slate-200 w-[70em] h-16 text-center
+                    text-md text-slate-900 font-sans focus:border-2
                     focus:outline-none
                     "
                     id="hobbies"
                     required={true}
-                    placeholder="Add hobbies here!"
+                    placeholder="Surfing, hiking, gaming, etc."
                 />
             </label>
-            <button
-                type="submit"
-                className="rounded-xl bg-blue-600 px-6 py-3 font-mono text-xl text-white hover:bg-blue-700 cursor-pointer"
-            >
-                Submit
-            </button>
+            <div className="flex flex-row-reverse mx-auto gap-x-96">
+                <ButtonArrow
+                    type="submit"
+                    direction="next"
+                    href="/question-one"
+                    className="mt-16 w-20"
+                />
+                <ButtonArrow
+                    direction="back"
+                    href="/question-one"
+                    className="mt-16 w-20"
+                />
+            </div>
         </form>
     );
 }

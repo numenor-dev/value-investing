@@ -1,10 +1,9 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { motion } from 'motion/react';
+import ButtonArrow from '../components/buttonarrow';
 
 export default function PassionInvesting() {
-    const router = useRouter();
 
     const textVariants = {
         hidden: { opacity: 0, y: 40 },
@@ -16,24 +15,6 @@ export default function PassionInvesting() {
                 delay: index * 0.2
             }
         })
-    };
-
-    const buttonVariants = {
-        hidden: { opacity: 0, y: 40 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                duration: 1.5,
-            }
-        },
-        hover: {
-            scale: 1.05,
-            transition: {
-                duration: 0.2,
-                easing: 'easeIn'
-            }
-        }
     };
 
     return (
@@ -48,7 +29,7 @@ export default function PassionInvesting() {
                 What is Passion Investing?
             </motion.h1>
             <motion.span
-                className="font-sans text-3xl mt-10 xl:max-w-7xl lg:max-w-5xl mx-auto"
+                className=" xl:max-w-7xl lg:max-w-5xl mx-auto text-justify font-sans text-3xl mt-10"
                 variants={textVariants}
                 initial="hidden"
                 animate="visible"
@@ -63,17 +44,19 @@ export default function PassionInvesting() {
                 their investments, potentially leading to better
                 decision-making and long-term commitment.
             </motion.span>
-            <motion.button
-                className="rounded-xl mx-auto bg-slate-950 px-6 py-3 font-mono text-2xl text-white cursor-pointer mt-24 ease-in-out shadow-xl"
-                type="button"
-                onClick={() => router.push("/value-inv")}
-                variants={buttonVariants}
-                initial="hidden"
-                animate="visible"
-                whileHover="hover"
-            >
-                Continue
-            </motion.button>
+            <div className="flex flex-row-reverse mx-auto gap-x-96">
+                <ButtonArrow
+                    direction="next"
+                    href="/value-inv"
+                    className="mt-20 w-20"
+                />
+
+                <ButtonArrow
+                    direction="back"
+                    href="/"
+                    className="mt-20 w-20"
+                />
+            </div>
         </div>
     )
 }

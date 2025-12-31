@@ -5,6 +5,7 @@ import { useQuestionStore } from '@/store/questiondata';
 import type { RefinedHobbies } from '@/store/questiondata';
 import { useRouter } from 'next/navigation';
 import { motion } from 'motion/react';
+import ButtonArrow from './buttonarrow';
 
 type SubCardsProps = {
     refHobbies: RefinedHobbies;
@@ -52,12 +53,12 @@ export default function SubCards({ refHobbies }: SubCardsProps) {
     };
 
     return (
-        <div className="xl:max-w-7xl lg:max-w-5xl mx-auto mt-20 px-4">
-            <h1 className="font-sans font-bold text-4xl mb-12">
-                Which of these areas interest you the most? Choose as many as you like.
-            </h1>
+        <div className="xl:max-w-7xl lg:max-w-5xl flex flex-col mx-auto pt-24 px-4">
+            <h2 className="text-center font-sans font-bold text-5xl mb-12">
+                Which of these areas interest you the most?
+            </h2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12" style={{ perspective: '1000px' }}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4 mb-12" style={{ perspective: '1000px' }}>
                 {allOptions.map(({ option, row, col }) => (
                     <motion.button
                         key={option}
@@ -71,7 +72,7 @@ export default function SubCards({ refHobbies }: SubCardsProps) {
                         }}
                         onClick={() => toggleSelect(option)}
                         className={`p-4 rounded-lg font-sans text-lg font-medium transition-all duration-200 shadow-md hover:shadow-lg ${selected.includes(option)
-                            ? 'bg-blue-600 text-white scale-105'
+                            ? 'bg-green-700 text-white scale-105'
                             : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
                             }`}
                         style={{ transformStyle: 'preserve-3d' }}
@@ -80,13 +81,19 @@ export default function SubCards({ refHobbies }: SubCardsProps) {
                     </motion.button>
                 ))}
             </div>
-
-            <button
-                onClick={handleSubmit}
-                className="block mx-auto rounded-xl bg-blue-600 px-8 py-3 font-mono text-xl text-white hover:bg-blue-500 transition-colors duration-200 cursor-pointer"
-            >
-                Continue
-            </button>
+            <div className="flex flex-row-reverse mx-auto gap-x-96">
+                <ButtonArrow
+                    onClick={handleSubmit}
+                    direction="next"
+                    href="/question-three"
+                    className="mt-20 w-20"
+                />
+                <ButtonArrow
+                    direction="back"
+                    href="/question-one"
+                    className="mt-20 w-20"
+                />
+            </div>
         </div>
     );
 }

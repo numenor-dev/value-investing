@@ -54,7 +54,7 @@ export async function findCompanies(refinedHobbies: string[]) {
             role: 'user',
             content: `Given these specific interests: ${refinedHobbies.join(', ')}
             
-            Identify 3 publicly traded companies that align with these interests.
+            Identify 1 publicly traded company for each interest.
 
             Return ONLY valid JSON (no markdown, no extra text) in this exact format:
             [

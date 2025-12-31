@@ -55,9 +55,9 @@ export default function QuestionThree() {
                 animate="pulse"
                 transition={{ staggerChildren: -0.2, staggerDirection: -1 }}
             >
-                <motion.div className="w-4 h-4 rounded-3xl bg-blue-700 will-change-transform" variants={dotVariants} />
-                <motion.div className="w-4 h-4 rounded-3xl bg-blue-700 will-change-transform" variants={dotVariants} />
-                <motion.div className="w-4 h-4 rounded-3xl bg-blue-700 will-change-transform" variants={dotVariants} />
+                <motion.div className="w-4 h-4 rounded-3xl bg-slate-200 will-change-transform" variants={dotVariants} />
+                <motion.div className="w-4 h-4 rounded-3xl bg-slate-200 will-change-transform" variants={dotVariants} />
+                <motion.div className="w-4 h-4 rounded-3xl bg-slate-200 will-change-transform" variants={dotVariants} />
             </motion.div>
         );
     }
