@@ -61,6 +61,7 @@ export async function findCompanies(refinedHobbies: string[]) {
                 {
                     "name": "Company Name",
                     "ticker": "SYMBOL",
+                    "website": "https://companywebsite.com",
                     "description": "Brief relevance description"
                 }
             ]

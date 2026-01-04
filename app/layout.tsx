@@ -1,26 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Noto_Sans } from "next/font/google";
+import { Ubuntu } from "next/font/google";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const notoSans = Noto_Sans({
-  variable: "--font-noto-sans",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "PIE - Personalized Investment Engine",
   description: "A tool to learn about passion and value investing."
 };
+
+const ubuntu = Ubuntu({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-ubuntu",
+});
 
 export default function RootLayout({
   children,
@@ -30,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${notoSans.variable} antialiased`}
+        className={`${ubuntu.variable} antialiased`}
       >
         <div className="min-h-screen bg-cyan-900 text-slate-300">
           {children}

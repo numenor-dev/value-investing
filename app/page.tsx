@@ -18,9 +18,9 @@ export default function Begin() {
   };
 
   return (
-    <div className="lg:max-w-7xl max-w-xl flex flex-col mx-auto pt-28 font-sans">
+    <div className="lg:max-w-7xl max-w-xl flex flex-col mx-auto md:pt-24 pt-16">
       <motion.h1
-        className="font-noto font-bold text-7xl mx-auto"
+        className="font-bold text-7xl md:mx-auto mx-1 text-center"
         variants={textVariants}
         initial="hidden"
         animate="visible"
@@ -30,7 +30,7 @@ export default function Begin() {
       </motion.h1>
 
       <motion.h1
-        className="font-noto font-bold text-6xl mt-10 mx-auto"
+        className="font-bold text-6xl mt-10 md:mx-auto mx-1 text-center"
         variants={textVariants}
         initial="hidden"
         animate="visible"
@@ -40,7 +40,7 @@ export default function Begin() {
       </motion.h1>
 
       <motion.span
-        className="font-noto text-3xl mt-16 mx-auto"
+        className="font-noto text-3xl mt-16 md:mx-auto md:text-justify mx-4 text-center leading-10"
         variants={textVariants}
         initial="hidden"
         animate="visible"
@@ -48,13 +48,30 @@ export default function Begin() {
       >
         PIE is a tool to learn about passion and value investing.
         It will not buy stocks nor provide financial advice, but it will teach you about passion
-        and value investing as well provide stock suggestions based upon your lifestyle!
+        and value investing!
       </motion.span>
       <div className="mx-auto">
         <Button
-        href="/passion-inv"
-        className="mt-24">
+          href="/passion-inv"
+          className="
+          group cursor-pointer font-mono px-8 py-2 rounded-full bg-blue-500 text-slate-100
+          text-2xl my-20
+          "
+        >
           Begin
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none" viewBox="0 0 24 24"
+            strokeWidth={1.5} stroke="currentColor"
+            className="group-hover:translate-x-1 transition-transform
+            duration-300 inline ml-1 size-6 w-6 h-6
+          ">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+            />
+          </svg>
         </Button>
       </div>
     </div>

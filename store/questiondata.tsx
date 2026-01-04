@@ -4,6 +4,7 @@ import { persist } from 'zustand/middleware';
 export type Company = {
     name: string;
     ticker: string;
+    website: string;
     description: string;
 };
 

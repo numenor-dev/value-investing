@@ -37,21 +37,12 @@ export default function Button({
                 duration: 1,
             },
         },
-        hover: {
-            scale: 1.03,
-            transition: {
-                duration: 0.2,
-                easing: 'easeIn'
-            }
-        }
     };
 
     return (
         <motion.button
             type="button"
-            className={`px-5 py-3 font-sans text-2xl text-slate-100
-            font-semibold cursor-pointer rounded-lg shadow-2xl bg-slate-950
-            ${className}`}
+            className={`${className}`}
 
             variants={buttonVariants}
             initial="hidden"

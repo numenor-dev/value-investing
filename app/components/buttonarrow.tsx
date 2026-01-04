@@ -1,7 +1,7 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { motion, spring } from 'motion/react';
+import { useRouter, usePathname } from 'next/navigation';
+import { motion } from 'motion/react';
 
 type ButtonArrowProps = {
     type?: 'submit' | 'reset';
@@ -18,6 +18,8 @@ export default function ButtonArrow({
     className = '',
 }: ButtonArrowProps) {
     const router = useRouter();
+    const pathname = usePathname();
+    const isQuestionOne = pathname === '/question-one';
 
     const handleClick = () => {
         if (onClick) {
@@ -28,7 +30,7 @@ export default function ButtonArrow({
     };
 
     const arrowVariants = {
-        hidden: { opacity: 0, y: 40 },
+        hidden: { opacity: 0, y: isQuestionOne ? 0 : 40},
         visible: {
             opacity: 1,
             y: 0,
@@ -37,12 +39,10 @@ export default function ButtonArrow({
             },
         },
         hover: {
+            x: direction === 'next' ? 5 : -5,
             transition: {
-                x: direction === 'next' ? 10 : -10,
-                type: spring,
-                damping: 10,
-                stiffness: 300,
-            },
+                yoyo: Infinity, duration: 0.3
+            }
         },
     };
 
@@ -50,35 +50,52 @@ export default function ButtonArrow({
         <motion.button
             className={`cursor-pointer flex ${className}`}
             onClick={handleClick}
-            whileHover="hover"
         >
-            <motion.svg
-                width="50"
-                height="32"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-white"
-                variants={arrowVariants}
-                initial="hidden"
-                animate="visible"
-                transition={{ duration: 0.3 }}
-            >
-                {direction === 'next' ? (
-                    <>
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                        <polyline points="12 5 19 12 12 19" />
-                    </>
-                ) : (
-                    <>
-                        <line x1="19" y1="12" x2="5" y2="12" />
-                        <polyline points="12 5 5 12 12 19" />
-                    </>
-                )}
-            </motion.svg>
+            {direction === 'next' ? (
+                <>
+                    <motion.svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="size-8 h-12 w-16"
+                        variants={arrowVariants}
+                        initial="hidden"
+                        animate="visible"
+                        transition={{ duration: 0.3 }}
+                        whileHover="hover"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"
+                        />
+                    </motion.svg>
+                </>
+            ) : (
+                <>
+                    <motion.svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="size-8 h-12 w-16"
+                        variants={arrowVariants}
+                        initial="hidden"
+                        animate="visible"
+                        transition={{ duration: 0.3 }}
+                        whileHover="hover"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18"
+                        />
+                    </motion.svg>
+                </>
+            )}
         </motion.button>
     );
 }

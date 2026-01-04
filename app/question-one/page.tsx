@@ -33,21 +33,21 @@ export default function QuestionOne() {
     return (
         <form
             className="
-            flex min-h-screen flex-col items-center 
-            justify-center font-sans space-y-6 p-4
+            flex flex-col md:pt-32 pt-24 items-center 
+            justify-center
             "
             onSubmit={handleSubmit}
         >
-            <h2 className="text-5xl font-bold">
+            <h1 className="text-5xl font-bold text-center mb-12">
                 What hobbies are you passionate about?
-            </h2>
+            </h1>
             <label className="flex flex-col items-start space-y-2">
                 <input
                     name="hobbies"
                     type="text"
                     className="
-                    rounded-md bg-slate-200 w-[70em] h-16 text-center
-                    text-md text-slate-900 font-sans focus:border-2
+                    rounded-md bg-slate-200 lg:w-[65em] w-[25em] h-10 text-center
+                    text-md text-slate-900   focus:border-2
                     focus:outline-none
                     "
                     id="hobbies"
@@ -55,17 +55,17 @@ export default function QuestionOne() {
                     placeholder="Surfing, hiking, gaming, etc."
                 />
             </label>
-            <div className="flex flex-row-reverse mx-auto gap-x-96">
+            <div className="flex flex-row-reverse mx-auto md:gap-x-96 gap-x-64 mb-20">
                 <ButtonArrow
                     type="submit"
                     direction="next"
-                    href="/question-one"
-                    className="mt-16 w-20"
+                    className="mt-20"
                 />
+
                 <ButtonArrow
                     direction="back"
-                    href="/question-one"
-                    className="mt-16 w-20"
+                    href="/value-inv"
+                    className="mt-20"
                 />
             </div>
         </form>

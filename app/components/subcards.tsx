@@ -54,11 +54,11 @@ export default function SubCards({ refHobbies }: SubCardsProps) {
 
     return (
         <div className="xl:max-w-7xl lg:max-w-5xl flex flex-col mx-auto pt-24 px-4">
-            <h2 className="text-center font-sans font-bold text-5xl mb-12">
+            <h2 className="text-center   font-bold text-5xl mb-12">
                 Which of these areas interest you the most?
             </h2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4 mb-12" style={{ perspective: '1000px' }}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4 sm:mx-0 mx-10" style={{ perspective: '1000px' }}>
                 {allOptions.map(({ option, row, col }) => (
                     <motion.button
                         key={option}
@@ -71,9 +71,9 @@ export default function SubCards({ refHobbies }: SubCardsProps) {
                             ease: "easeOut"
                         }}
                         onClick={() => toggleSelect(option)}
-                        className={`p-4 rounded-lg font-sans text-lg font-medium transition-all duration-200 shadow-md hover:shadow-lg ${selected.includes(option)
-                            ? 'bg-green-700 text-white scale-105'
-                            : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
+                        className={`p-4 rounded-lg   text-xl font-medium transition-all duration-200 shadow-xl hover:shadow-lg ${selected.includes(option)
+                            ? 'bg-green-700 text-white scale-103'
+                            : 'bg-slate-100 text-gray-800 hover:bg-slate-200'
                             }`}
                         style={{ transformStyle: 'preserve-3d' }}
                     >
@@ -81,17 +81,17 @@ export default function SubCards({ refHobbies }: SubCardsProps) {
                     </motion.button>
                 ))}
             </div>
-            <div className="flex flex-row-reverse mx-auto gap-x-96">
+            <div className="flex flex-row-reverse mx-auto md:gap-x-96 gap-x-64 mb-20">
                 <ButtonArrow
                     onClick={handleSubmit}
                     direction="next"
                     href="/question-three"
-                    className="mt-20 w-20"
+                    className="mt-20"
                 />
                 <ButtonArrow
                     direction="back"
                     href="/question-one"
-                    className="mt-20 w-20"
+                    className="mt-20"
                 />
             </div>
         </div>

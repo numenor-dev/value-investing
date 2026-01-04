@@ -18,9 +18,9 @@ export default function PassionInvesting() {
     };
 
     return (
-        <div className="lg:max-w-7xl max-w-xl flex flex-col mx-auto pt-28 font-sans">
+        <div className="lg:max-w-7xl max-w-xl flex flex-col mx-auto md:pt-24 pt-16">
             <motion.h1
-                className="font-sans font-bold text-7xl mx-auto"
+                className="font-bold text-7xl md:mx-auto mx-1 text-center"
                 variants={textVariants}
                 initial="hidden"
                 animate="visible"
@@ -29,7 +29,8 @@ export default function PassionInvesting() {
                 What is Passion Investing?
             </motion.h1>
             <motion.span
-                className=" xl:max-w-7xl lg:max-w-5xl mx-auto text-justify font-sans text-3xl mt-10"
+                className="xl:max-w-7xl lg:max-w-5xl md:text-justify
+                  text-3xl mt-10 md:mx-auto mx-4 text-center leading-10"
                 variants={textVariants}
                 initial="hidden"
                 animate="visible"
@@ -44,17 +45,17 @@ export default function PassionInvesting() {
                 their investments, potentially leading to better
                 decision-making and long-term commitment.
             </motion.span>
-            <div className="flex flex-row-reverse mx-auto gap-x-96">
+            <div className="flex flex-row-reverse mx-auto md:gap-x-96 gap-x-64 mb-20">
                 <ButtonArrow
                     direction="next"
                     href="/value-inv"
-                    className="mt-20 w-20"
+                    className="mt-20"
                 />
 
                 <ButtonArrow
                     direction="back"
                     href="/"
-                    className="mt-20 w-20"
+                    className="mt-20"
                 />
             </div>
         </div>
