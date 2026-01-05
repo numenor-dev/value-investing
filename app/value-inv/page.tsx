@@ -51,13 +51,13 @@ export default function ValueInvesting() {
             <div className="flex flex-row-reverse mx-auto md:gap-x-96 gap-x-64 mb-20">
                 <ButtonArrow
                     direction="next"
-                    href="/question-one"
+                    href="/company-info"
                     className="mt-20"
                 />
 
                 <ButtonArrow
                     direction="back"
-                    href="/passion-inv"
+                    href="/question-two"
                     className="mt-20"
                 />
             </div>

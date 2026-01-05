@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Ubuntu } from "next/font/google";
+import { Toaster } from 'react-hot-toast';
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -25,6 +26,7 @@ export default function RootLayout({
       >
         <div className="min-h-screen bg-cyan-900 text-slate-300">
           {children}
+          <Toaster />
         </div>
       </body>
     </html>

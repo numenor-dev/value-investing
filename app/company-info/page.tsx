@@ -4,9 +4,9 @@ import { useQuestionStore } from "@/store/questiondata";
 import { findCompanies } from "../api/claude";
 import { useEffect, useState, useRef } from 'react';
 import { motion, Variants } from 'motion/react';
-import CompanyInfo from "../components/companyinfo";
+import CompanyCards from "../components/companycards";
 
-export default function QuestionThree() {
+export default function CompanyInformation() {
 
     const dotVariants: Variants = {
         pulse: {
@@ -64,7 +64,7 @@ export default function QuestionThree() {
 
     return (
         <div>
-            <CompanyInfo relatedCompanies={companies} />
+            <CompanyCards relatedCompanies={companies} />
         </div>
     )
 }

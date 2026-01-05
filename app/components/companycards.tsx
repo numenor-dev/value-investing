@@ -2,12 +2,13 @@
 
 import { motion } from 'motion/react';
 import type { Company } from '@/store/questiondata';
+import ButtonArrow from '../components/buttonarrow';
 
 type CompanyInfoProps = {
     relatedCompanies: Company[];
 }
 
-export default function CompanyInfo({ relatedCompanies }: CompanyInfoProps) {
+export default function CompanyCards({ relatedCompanies }: CompanyInfoProps) {
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -61,13 +62,19 @@ export default function CompanyInfo({ relatedCompanies }: CompanyInfoProps) {
                 ))}
             </motion.div>
 
-            <span className="text-2xl   text-slate-200 mt-10 leading-10">
+            <span className="text-2xl text-slate-200 mt-10 leading-10">
                 {`Based on your answers, ${multipleCompanies ? 'these companies' : 'this company'}
                 might be worth exploring further regarding passion investing or value investing
                 ...or both! As a reminder, this is not financial advice. Remember to conduct your own research
                 before making any investment decisions. Just a friendly slice of advice from
                 P.I.E.`}
             </span>
+
+            <ButtonArrow
+                direction="back"
+                href="/value-inv"
+                className="mt-20 pb-20 mx-auto"
+            />
         </div>
     )
 }

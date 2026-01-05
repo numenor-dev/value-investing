@@ -48,7 +48,7 @@ export default function PassionInvesting() {
             <div className="flex flex-row-reverse mx-auto md:gap-x-96 gap-x-64 mb-20">
                 <ButtonArrow
                     direction="next"
-                    href="/value-inv"
+                    href="/question-one"
                     className="mt-20"
                 />
 

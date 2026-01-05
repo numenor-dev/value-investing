@@ -18,7 +18,7 @@ export default function SubCards({ refHobbies }: SubCardsProps) {
 
     const handleSubmit = () => {
         setSelectedRefinedHobbies(selected);
-        router.push('/question-three');
+        router.push('/value-inv');
     };
 
     const toggleSelect = (option: string) => {
@@ -85,7 +85,6 @@ export default function SubCards({ refHobbies }: SubCardsProps) {
                 <ButtonArrow
                     onClick={handleSubmit}
                     direction="next"
-                    href="/question-three"
                     className="mt-20"
                 />
                 <ButtonArrow

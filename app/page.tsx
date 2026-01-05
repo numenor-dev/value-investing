@@ -48,14 +48,14 @@ export default function Begin() {
       >
         PIE is a tool to learn about passion and value investing.
         It will not buy stocks nor provide financial advice, but it will teach you about passion
-        and value investing!
+        and value investing while helping you find companies that align with your interests and values.
       </motion.span>
       <div className="mx-auto">
         <Button
           href="/passion-inv"
           className="
           group cursor-pointer font-mono px-8 py-2 rounded-full bg-blue-500 text-slate-100
-          text-2xl my-20
+          text-2xl mt-20 mb-28
           "
         >
           Begin

@@ -1,43 +1,34 @@
 'use client';
 
+import { validateHobbies } from '@/app/actions/validation';
 import { useRouter } from 'next/navigation';
 import { useQuestionStore } from '@/store/questiondata';
+import toast from 'react-hot-toast';
 import ButtonArrow from '../components/buttonarrow';
 
-
 export default function QuestionOne() {
-
     const router = useRouter();
     const { setHobbies } = useQuestionStore();
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         const formData = new FormData(event.currentTarget);
-        const input = formData.get('hobbies') as string;
+        const result = await validateHobbies(formData);
 
-        const hobbies = input
-            .split(/,|\s+and\s+/i)
-            .map((h) => h.trim())
-            .filter(Boolean);
-
-        if (hobbies.length === 0) {
-            alert('Please add at least one hobby!');
+        if (!result.success) {
+            toast.error(result.error || 'An error occurred');
             return;
         }
 
+        const hobbies = result.hobbies as string[];
+
         setHobbies(hobbies);
         router.push('/question-two');
-    }
+    };
 
     return (
-        <form
-            className="
-            flex flex-col md:pt-32 pt-24 items-center 
-            justify-center
-            "
-            onSubmit={handleSubmit}
-        >
+        <form onSubmit={handleSubmit} className="flex flex-col md:pt-32 pt-24 items-center justify-center">
             <h1 className="text-5xl font-bold text-center mb-12">
                 What hobbies are you passionate about?
             </h1>
@@ -51,7 +42,6 @@ export default function QuestionOne() {
                     focus:outline-none
                     "
                     id="hobbies"
-                    required={true}
                     placeholder="Surfing, hiking, gaming, etc."
                 />
             </label>
@@ -64,7 +54,7 @@ export default function QuestionOne() {
 
                 <ButtonArrow
                     direction="back"
-                    href="/value-inv"
+                    href="/passion-inv"
                     className="mt-20"
                 />
             </div>
