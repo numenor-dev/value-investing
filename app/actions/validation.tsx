@@ -6,7 +6,7 @@ import { z } from 'zod';
 const schema = z.object({
     hobbies: z
         .string()
-        .min(1, 'Please add at least one hobby!'),
+        .min(1)
 });
 
 const FILLER_WORDS = [
@@ -30,12 +30,12 @@ export async function validateHobbies(formData: FormData) {
         if (submission.status !== 'success') {
             return {
                 success: false,
-                error: submission.error?.hobbies?.[0] || 'Please add at least one hobby!'
+                error: 'Please enter at least one hobby!'
             };
         }
 
         const hobbyList = submission.value.hobbies
-            .split(/,|\s+and\s+/i)
+            .split(/\d+/g)
             .map((h) => {
                 return h
                     .trim()
@@ -47,11 +47,14 @@ export async function validateHobbies(formData: FormData) {
             .filter(Boolean);
 
         if (hobbyList.length === 0) {
-            return { success: false, error: 'Please add at least one hobby!' };
+            return {
+                success: false,
+                error: 'Please enter at least one hobby!'
+            };
         }
 
         return { success: true, hobbies: hobbyList };
     } catch {
-        return { success: false, error: 'An unexpected error occurred. Please try again.' };
+        return { success: false, error: 'Please add a least one hobby!' };
     }
 }

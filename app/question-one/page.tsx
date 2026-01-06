@@ -10,25 +10,34 @@ export default function QuestionOne() {
     const router = useRouter();
     const { setHobbies } = useQuestionStore();
 
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>, direction: string) => {
         event.preventDefault();
 
         const formData = new FormData(event.currentTarget);
         const result = await validateHobbies(formData);
 
-        if (!result.success) {
-            toast.error(result.error || 'An error occurred');
+        if (!result.success && direction === "next") {
+            toast.error(result.error || 'An unexpected error occurred. Please try again.');
+            return;
+        }
+
+        if (direction === "back") {
+            router.push('/passion-inv');
             return;
         }
 
         const hobbies = result.hobbies as string[];
-
         setHobbies(hobbies);
         router.push('/question-two');
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col md:pt-32 pt-24 items-center justify-center">
+        <form
+            onSubmit={(e) => handleSubmit(e, "next")}
+            className="flex flex-col md:pt-32 pt-24 items-center
+            justify-center
+            "
+        >
             <h1 className="text-5xl font-bold text-center mb-12">
                 What hobbies are you passionate about?
             </h1>
@@ -42,6 +51,7 @@ export default function QuestionOne() {
                     focus:outline-none
                     "
                     id="hobbies"
+                    formNoValidate
                     placeholder="Surfing, hiking, gaming, etc."
                 />
             </label>
@@ -53,6 +63,7 @@ export default function QuestionOne() {
                 />
 
                 <ButtonArrow
+                    type="button"
                     direction="back"
                     href="/passion-inv"
                     className="mt-20"

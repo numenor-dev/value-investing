@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Ubuntu } from "next/font/google";
-import { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast'
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -25,8 +25,18 @@ export default function RootLayout({
         className={`${ubuntu.variable} antialiased`}
       >
         <div className="min-h-screen bg-cyan-900 text-slate-300">
+          <Toaster
+            toastOptions={{
+              className: "rounded-sm shadow-md",
+              duration: 5000,
+              removeDelay: 1000,
+              style: {
+                background: '#363636',
+                color: '#fff',
+              },
+            }}
+          />
           {children}
-          <Toaster />
         </div>
       </body>
     </html>

@@ -4,7 +4,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import { motion } from 'motion/react';
 
 type ButtonArrowProps = {
-    type?: 'submit' | 'reset';
+    type?: 'submit' | 'reset' | 'button';
     direction: 'next' | 'back';
     href?: string;
     onClick?: () => void;
@@ -12,6 +12,7 @@ type ButtonArrowProps = {
 };
 
 export default function ButtonArrow({
+    type = 'button',
     direction,
     href,
     onClick,
@@ -48,6 +49,7 @@ export default function ButtonArrow({
 
     return (
         <motion.button
+            type={type}
             className={`cursor-pointer flex ${className}`}
             onClick={handleClick}
         >
