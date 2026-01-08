@@ -20,7 +20,7 @@ export default function PassionInvesting() {
     return (
         <div className="lg:max-w-7xl max-w-xl flex flex-col mx-auto md:pt-24 pt-16">
             <motion.h1
-                className="font-bold text-7xl md:mx-auto mx-1 text-center"
+                className="font-bold md:text-6xl text-7xl md:mx-auto mx-1 text-center"
                 variants={textVariants}
                 initial="hidden"
                 animate="visible"
@@ -29,23 +29,39 @@ export default function PassionInvesting() {
                 What is Passion Investing?
             </motion.h1>
             <motion.span
-                className="xl:max-w-7xl lg:max-w-5xl md:text-justify
-                  text-3xl mt-10 md:mx-auto mx-4 text-center leading-10"
+                className="xl:max-w-6xl lg:max-w-5xl md:text-justify
+                  md:text-2xl text-3xl mt-10 md:mx-auto mx-4 text-center leading-10"
                 variants={textVariants}
                 initial="hidden"
                 animate="visible"
                 custom={1}
             >
-                Passion Investing is an investment strategy that
-                focuses on investing in companies, industries, or
-                sectors that align with an individual&apos;s personal
-                interests, values, or passions. The idea is that by
-                investing in areas one is passionate about, investors
-                may be more engaged and motivated to stay informed about
-                their investments, potentially leading to better
-                decision-making and long-term commitment.
+                Passion investing focuses on investing in companies
+                or industries that relate to your interests.
+                The idea is that by investing in areas one
+                is passionate about, investing may become more engaging
+                and motivate you to stay informed about
+                your investments, potentially leading to better decision
+                making and long term commitment.
             </motion.span>
-            <div className="flex flex-row-reverse mx-auto md:gap-x-96 gap-x-64 mb-20">
+            <motion.span
+                className="xl:max-w-6xl lg:max-w-5xl md:text-justify
+                  md:text-2xl text-3xl mt-10 md:mx-auto mx-4 text-center leading-10"
+                variants={textVariants}
+                initial="hidden"
+                animate="visible"
+                custom={2}
+            >
+                For example, a person passionate about technology
+                might choose to invest in tech startups. Similarly, 
+                someone interested in sustainable living might focus
+                on companies developing clean energy with strong
+                environmental practices. Passion investing can extend
+                to art, sports, collectibles, and more! The key is aligning
+                investments with your interests to create a more
+                rewarding investment experience.
+            </motion.span>
+            <div className="flex flex-row-reverse mx-auto md:gap-x-96 gap-x-52 mb-32">
                 <ButtonArrow
                     direction="next"
                     href="/question-one"

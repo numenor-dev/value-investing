@@ -46,8 +46,8 @@ export default function QuestionOne() {
                     name="hobbies"
                     type="text"
                     className="
-                    rounded-md bg-slate-200 lg:w-[65em] w-[25em] h-10 text-center
-                    text-md text-slate-900   focus:border-2
+                    rounded-md bg-slate-200 lg:w-[65em] md:w-[35em] w-[25em] md:h-10 h-16 text-center
+                    text-md text-slate-900 focus:border-2
                     focus:outline-none
                     "
                     id="hobbies"
@@ -55,7 +55,7 @@ export default function QuestionOne() {
                     placeholder="Surfing, hiking, gaming, etc."
                 />
             </label>
-            <div className="flex flex-row-reverse mx-auto md:gap-x-96 gap-x-64 mb-20">
+            <div className="flex flex-row-reverse mx-auto md:gap-x-96 gap-x-52">
                 <ButtonArrow
                     type="submit"
                     direction="next"

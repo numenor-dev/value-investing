@@ -40,7 +40,7 @@ export default function Begin() {
       </motion.h1>
 
       <motion.span
-        className="font-noto text-3xl mt-16 md:mx-auto md:text-justify mx-4 text-center leading-10"
+        className="md:text-2xl text-3xl mt-16 md:mx-auto md:text-justify mx-4 text-center leading-10"
         variants={textVariants}
         initial="hidden"
         animate="visible"
@@ -55,7 +55,7 @@ export default function Begin() {
           href="/passion-inv"
           className="
           group cursor-pointer font-mono px-8 py-2 rounded-full bg-blue-500 text-slate-100
-          text-2xl mt-20 mb-28
+          text-2xl mt-24 mb-32 shadow-xl
           "
         >
           Begin
