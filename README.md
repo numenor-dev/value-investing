@@ -1,36 +1,113 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PIE - Personalized Investment Engine
+
+An intelligent learning tool that provides investment suggestions (not financial advice) based on what you like to do in your free time!
+
+## Features
+
+- **AI-Powered Recommendations**: Leverages Claude AI to provide intelligent, personalized investment suggestions
+- **Form Validation**: Robust form handling with Conform and Zod for reliable data validation
+- **Real-Time Notifications**: Toast notifications via React Hot Toast for user feedback
+- **State Management**: Efficient state management with Zustand
+- **Responsive Design**: Modern, mobile-friendly interface built with Tailwind CSS
+- **Smooth Animations**: Engaging UI interactions with Motion animations
+- **Type-Safe Development**: Full TypeScript support for code reliability
+
+## Tech Stack
+
+- **Framework**: [Next.js](https://nextjs.org/) 16.0.10
+- **UI Library**: [React](https://react.dev/) 19.2.0
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) 4
+- **AI Integration**: [Anthropic Claude SDK](https://docs.anthropic.com/) 0.71.2
+- **Form Handling**: [Conform](https://conform.guide/) with [Zod](https://zod.dev/) validation
+- **State Management**: [Zustand](https://github.com/pmndrs/zustand) 5.0.9
+- **Notifications**: [React Hot Toast](https://react-hot-toast.com/) 2.6.0
+- **Animations**: [Motion](https://motion.dev/)
+- **Language**: TypeScript 5
+- **Linting**: ESLint
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 18+ and yarn installed
+- Anthropic API key for Claude AI integration
+
+### Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/numenor-dev/pie.git
+cd pie
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+``bash
+yarn install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Set up environment variables:
+```bash
+cp .env.example .env.local
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Add your Anthropic API key to `.env.local`:
+```
+ANTHROPIC_API_KEY=your_api_key_here
+```
 
-## Learn More
+### Development
 
-To learn more about Next.js, take a look at the following resources:
+Start the development server:
+```bash
+yarn next dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Production
 
-## Deploy on Vercel
+Build for production:
+```bash
+yarn next build
+yarn start
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Scripts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `yarn next dev` - Start development server with hot reload
+- `yarn next build` - Build the application for production
+- `yarn start` - Start the production server
+- `yarn lint` - Run ESLint to check code quality
+
+## Project Structure
+
+```
+pie/
+├── app/                    # Next.js app directory
+├── components/             # React components
+├── lib/                    # Utility functions and helpers
+├── public/                 # Static assets
+├── .env.local             # Environment variables (create from .env.example)
+├── package.json
+└── tsconfig.json
+```
+
+## Environment Variables
+
+- `ANTHROPIC_API_KEY` - Your Anthropic API key for Claude AI access
+
+## How It Works
+
+PIE uses the Anthropic Claude API to analyze user financial information and provide personalized investment recommendations. Users fill out forms detailing their investment goals, risk tolerance, and financial situation, which are then processed by Claude to generate tailored advice.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is private. For licensing information, please contact the repository maintainer.
+
+## Questions?
+
+If you have any questions or need help, please open an issue on the repository.
