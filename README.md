@@ -41,7 +41,7 @@ cd pie
 ```
 
 2. Install dependencies:
-``bash
+```bash
 yarn install
 ```
 
